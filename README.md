@@ -19,10 +19,10 @@ Installation instructions:
 
 It will prompt you to choose what services to install. E.g. mysql, pgsql etc.
 Choose `redis`
-- **Run `./vendor/bin/sail up`** or `./vendor/bin/sail up -d` to run in the background
+- Run `./vendor/bin/sail up` or `./vendor/bin/sail up -d` to run in the background
 
 You may also want to configure a Bash alias:
-- **alias sail='bash vendor/bin/sail'**
+- **`alias sail='bash vendor/bin/sail'`**
 
 After the setup has finished, go to:
 
@@ -32,7 +32,7 @@ You should be able to see a simple form that accepts .txt files
 
 Run tests:
 
-- **docker exec -it btree_laravel.test_1 php artisan test**
+- **`sail artisan test`**
 
 ## License
 
