@@ -12,26 +12,27 @@
 Installation instructions:
 
 - **Clone the repo**
-- **Run ./vendor/bin/sail up**
+- `cd btree/`
+- `composer require laravel/sail --dev` 
+- `cp .env.example .env`
+- `php artisan sail:install`
 
-It may take some time during the initial set up. Optionally run:
-
-- **Run ./vendor/bin/sail up -d**
-
-To run in the background
+It will prompt you to choose what services to install. E.g. mysql, pgsql etc.
+Choose `redis`
+- **Run `./vendor/bin/sail up`** or `./vendor/bin/sail up -d` to run in the background
 
 You may also want to configure a Bash alias:
 - **alias sail='bash vendor/bin/sail'**
 
 After the setup has finished, go to:
 
-- **http://localhost:6968/main**
+- **http://localhost/main**
 
 You should be able to see a simple form that accepts .txt files
 
 Run tests:
 
-- **docker exec -it dialassignment_laravel.test_1 php artisan test**
+- **docker exec -it btree_laravel.test_1 php artisan test**
 
 ## License
 
