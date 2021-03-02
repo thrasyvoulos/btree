@@ -65,8 +65,6 @@ class BinaryTree
                 $leftGen = BinaryNode::MALE;
             }
             // build left and right nodes
-            //$root->left = $this->buildTree($arr, $root->left, $lft, $length, $leftGen, $root);
-           // $root->right = $this->buildTree($arr, $root->right, $right, $length, $rightGen, $root);
             $root->addChildren(
                 $this->buildTree($arr, $root->left, $lft, $length, $leftGen, $root),
                 $this->buildTree($arr, $root->right, $right, $length, $rightGen, $root)
@@ -140,13 +138,14 @@ class BinaryTree
      * @param array $ff
      * @return bool
      */
-    public function extractDepthLevelNodes(BinaryNode $root, int $level, array &$ff): bool
+    private function extractDepthLevelNodes(BinaryNode $root, int $level, array &$ff): bool
     {
         if ($root === null) {
             return false;
         }
 
         if ($level === 1) {
+            // store all the nodes of the given level to an array
             $ff[] = $root;
             return true;
         }

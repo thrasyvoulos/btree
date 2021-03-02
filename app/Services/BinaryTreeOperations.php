@@ -29,7 +29,11 @@ class BinaryTreeOperations implements BinaryTreeOperationsInterface
         return $res;
     }
 
-    public function populate($input)
+    /**
+     * @param $input
+     * @return SplFixedArray
+     */
+    public function populate(int $input): SplFixedArray
     {
         $numNodes = $this->calculateNodes($input);
         return $this->populateNodesArray($numNodes);
@@ -46,14 +50,26 @@ class BinaryTreeOperations implements BinaryTreeOperationsInterface
         return is_infinite($res) || is_float($res);
     }
 
-    public function getMin($input, $column = 'generation')
+    /**
+     * Find min value in a multidimensional array
+     * @param array $input
+     * @param string $column
+     * @return mixed
+     */
+    public function getMin(array $input, $column = 'generation'): int
     {
-        return min(array_column($input, $column));
+        return (int)min(array_column($input, $column));
     }
 
-    public function getMax($input, $column = 'generation')
+    /**
+     * Find max value in a multidimensional array
+     * @param array $input
+     * @param string $column
+     * @return mixed
+     */
+    public function getMax(array $input, $column = 'generation'): int
     {
-        return max(array_column($input, $column));
+        return (int)max(array_column($input, $column));
     }
 
     /**

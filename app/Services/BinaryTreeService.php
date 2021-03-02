@@ -36,7 +36,7 @@ class BinaryTreeService implements BinaryTreeServiceInterface
         }
         $maxChild = $this->btreeOperations->getMax($processedResult, 'child');
         // there is no point on building the tree if max value of children is 1 or 2
-        if ((int)$maxChild < 3) {
+        if ($maxChild < 3) {
             return $this->skipTree($processedResult);
         }
         $max = $this->btreeOperations->getMax($processedResult);
