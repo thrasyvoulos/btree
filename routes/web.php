@@ -20,6 +20,4 @@ Route::get('/', function () {
 
 Route::get('/main', [MainController::class, 'createForm']);
 
-Route::post('/main', [MainController::class, 'fileUpload'])->name('fileUpload');
-
 
