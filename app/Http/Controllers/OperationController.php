@@ -6,7 +6,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\BtreeRequest;
 use App\Services\Interfaces\BinaryTreeServiceInterface;
-use Illuminate\Support\Facades\Redis;
 
 /**
  * ApiController to process the request

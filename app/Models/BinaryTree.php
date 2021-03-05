@@ -29,10 +29,10 @@ class BinaryTree
      * @param integer $i
      * @param integer $length
      * @param string $gender
-     * @param BinaryNode|null $parent
+     * @param int $depth
      * @return BinaryNode|null
      */
-    public function buildTree(array $arr, ?BinaryNode $root, int $i, int $length, string $gender, ?BinaryNode $parent): ?BinaryNode
+    public function buildTree(array $arr, ?BinaryNode $root, int $i, int $length, string $gender, $depth = 1): ?BinaryNode
     {
         if ($i < $length) {
             $temp = new BinaryNode($arr[$i]);
@@ -46,11 +46,10 @@ class BinaryTree
             $lft = 2 * $i + 1;
             $right = 2 * $i + 2;
 
-            // assign parent node to current node
-            //@todo evaluate if we need parent node after all
-            $root->parent = $parent;
             // assign gender to current node
             $root->gender = $gender;
+            // assign depth to current node
+            $root->depth = $depth;
 
             /*
              * If current node is Female this means that the left child should be Female and the right Male
@@ -66,8 +65,8 @@ class BinaryTree
             }
             // build left and right nodes
             $root->addChildren(
-                $this->buildTree($arr, $root->left, $lft, $length, $leftGen, $root),
-                $this->buildTree($arr, $root->right, $right, $length, $rightGen, $root)
+                $this->buildTree($arr, $root->left, $lft, $length, $leftGen, $depth + 1),
+                $this->buildTree($arr, $root->right, $right, $length, $rightGen, $depth + 1)
             );
         }
         $this->root = $root; // @todo evaluate if this is needed
@@ -125,33 +124,26 @@ class BinaryTree
      */
     private function traverse(BinaryNode $root, int $level = 1): array
     {
-        $ff = [];
-        while ($this->extractDepthLevelNodes($root, $level, $ff)) {
-            $level++;
-        }
-        return $ff;
+        $treeSlice = [];
+        $this->preOrder($root, $treeSlice, $level);
+        return $treeSlice;
     }
 
     /**
-     * @param BinaryNode $root
-     * @param int $level
-     * @param array $ff
-     * @return bool
+     * @param BinaryNode|null $node
+     * @param array $treeSlice
+     * @param int $depth
      */
-    private function extractDepthLevelNodes(BinaryNode $root, int $level, array &$ff): bool
+    private function preOrder(?BinaryNode $node, array &$treeSlice, int $depth)
     {
-        if ($root === null) {
+        if ($node === null) {
             return false;
         }
-
-        if ($level === 1) {
-            // store all the nodes of the given level to an array
-            $ff[] = $root;
-            return true;
+        if ($node->depth === $depth) {
+            $treeSlice[] = $node;
+            return false;
         }
-
-        $this->extractDepthLevelNodes($root->left, $level - 1, $ff);
-        $this->extractDepthLevelNodes($root->right, $level - 1, $ff);
-        return false;
+        $this->preOrder($node->left, $treeSlice, $depth);
+        $this->preOrder($node->right, $treeSlice, $depth);
     }
 }

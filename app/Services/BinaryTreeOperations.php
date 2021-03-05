@@ -16,8 +16,8 @@ class BinaryTreeOperations implements BinaryTreeOperationsInterface
      */
     public function processInput(string $input): array
     {
-        $input = explode("\n", $input);
-        if (empty(array_filter($input))) {
+        $input = array_filter(explode("\n", $input));
+        if (empty($input)) {
             return [];
         }
         $res = [];

@@ -19,9 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/operation/create', 'OperationController@create');
-//Route::get('/operation/skata', 'App\Http\Controllers\OperationController@skata');
-//Route::get('/operation', [OperationController::class, 'skata'])->name('skata');
-//Route::get('/operation', [OperationController::class, 'create'])->name('create');
 
 
 

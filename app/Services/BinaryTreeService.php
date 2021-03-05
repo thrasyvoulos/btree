@@ -91,7 +91,7 @@ class BinaryTreeService implements BinaryTreeServiceInterface
             return json_decode($tree, true);
         }
         $tree = new BinaryTree();
-        $tree->buildTree($treeNodes->toArray(), null, 0, $treeNodes->getSize(), BinaryNode::MALE, null);
+        $tree->buildTree($treeNodes->toArray(), null, 0, $treeNodes->getSize(), BinaryNode::MALE);
         $output = [];
         foreach ($processedResult as $result) {
             $output[] = $tree->findGender($tree->root, $result);

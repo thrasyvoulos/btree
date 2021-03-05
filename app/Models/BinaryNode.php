@@ -27,9 +27,9 @@ class BinaryNode
     public $gender;
 
     /**
-     * @var null|BinaryNode the parent node
+     * @var null|int depth of node
      */
-    public $parent;
+    public $depth;
 
     const MALE = 'M';
     const FEMALE = 'F';
@@ -40,12 +40,24 @@ class BinaryNode
         $this->left = null;
         $this->right = null;
         $this->gender = null;
-        $this->parent = null;
+        $this->depth = null;
     }
 
-    public function addChildren($left, $right)
+    /**
+     * @param $left
+     * @param $right
+     */
+    public function addChildren(?BinaryNode $left, ?BinaryNode $right)
     {
         $this->left = $left;
         $this->right = $right;
+    }
+
+    /**
+     * @param int $depth
+     */
+    public function setDepth(int $depth)
+    {
+        $this->depth = $depth;
     }
 }
